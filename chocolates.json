@@ -1,0 +1,84 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Milk Chocolate",
+      "image": "/milk-chocolate.jpeg",
+      "price": "100",
+      "size": "50g",
+      "quantity": 1
+    },
+    {
+      "id": 2,
+      "name": "White Chocolate",
+      "image": "/white-chocolate.jpeg",
+      "price": "150",
+      "size": "50g",
+      "quantity": 1
+    },
+    {
+      "id": 3,
+      "name": "Dark Chocolate",
+      "image": "/dark-chocolate.jpeg",
+      "price": "200",
+      "size": "50g",
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "name": "Semisweet Chocolate",
+      "image": "/Semisweet-Chocolate.jpeg",
+      "price": "80",
+      "size": "50g",
+      "quantity": 1
+    },
+    {
+      "id": 5,
+      "name": "Bittersweet Chocolate",
+      "image": "/bittersweet-chocolate.jpeg",
+      "price": "120",
+      "size": "50g",
+      "quantity": 1
+    },
+    {
+      "id": 6,
+      "name": "Baking Chocolate",
+      "image": "/Unsweetened-chocolate.jpeg",
+      "price": "50",
+      "size": "50g",
+      "quantity": 1
+    },
+    {
+      "id": 7,
+      "name": "Cocoa Powder",
+      "image": "/Cocoa-Powder.jpeg",
+      "price": "150",
+      "size": "50g",
+      "quantity": 1
+    },
+    {
+      "id": 8,
+      "name": "Sweet German Chocolate",
+      "image": "/Sweet-German-Chocolate.jpeg",
+      "price": "180",
+      "size": "50g",
+      "quantity": 1
+    },
+    {
+      "id": 10,
+      "name": "Couverture Chocolate",
+      "image": "/Couverture-Chocolate.jpeg",
+      "price": "300",
+      "size": "50g",
+      "quantity": 1
+    },
+    {
+      "id": 9,
+      "name": "Cholocate Bar",
+      "image": "/chocolate-bar.jpeg",
+      "price": "40",
+      "size": "20g",
+      "quantity": 1
+    }
+  ]
+}
