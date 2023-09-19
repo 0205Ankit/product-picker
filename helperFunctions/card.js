@@ -2,6 +2,10 @@ import { addToBundle } from "./addToBundle";
 import { removeFromBundle } from "./removeFromBundle";
 
 export const card = (data) => {
+  const totalAmount = data
+    .map((item) => item.quantity * +item.price)
+    .reduce((acc, i) => acc + i, 0);
+
   document.querySelector(".card_container").innerHTML = `
         <div class="info_text_box">
             ${
@@ -20,7 +24,7 @@ export const card = (data) => {
                       Your Bundle
                     </span>
                     <span>
-                      Total : ${0} ₹
+                      Total : ${totalAmount} ₹
                     </span>
                   </div>
                   ${data
