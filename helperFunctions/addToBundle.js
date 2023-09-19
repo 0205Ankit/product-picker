@@ -1,4 +1,15 @@
-import { store } from "./redux";
+import { card } from "./card";
+
+let data = [];
+
+export const fetchData = () => {
+  return data;
+};
+
+export const setData = (info) => {
+  data = info;
+  return data;
+};
 
 export const addToBundle = (element) => {
   element.forEach((button) => {
@@ -6,31 +17,17 @@ export const addToBundle = (element) => {
       const itemJSON = event.target.getAttribute("data-item");
       const selectedItem = JSON.parse(decodeURIComponent(itemJSON));
 
-      const bundleData = store.getState();
+      const bundleData = fetchData();
 
       let totalItem = 0;
       bundleData.forEach((chocol) => (totalItem = totalItem + chocol.quantity));
       if (totalItem >= 8) {
-        Toastify({
-          text: "Cannot add Item , Bundle can only contain 8 items",
-          duration: 2000,
-          newWindow: true,
-          close: true,
-          gravity: "top", // `top` or `bottom`
-          position: "right", // `left`, `center` or `right`
-          stopOnFocus: true, // Prevents dismissing of toast on hover
-          style: {
-            background: "#000",
-            color: "#fff",
-            borderRadius: "8px",
-          },
-        }).showToast();
+        document.querySelector(".modal-container").style.display = "block";
         return;
       }
       const isAlreadyInBundle = bundleData.some(
         (chocolate) => chocolate.id === selectedItem.id
       );
-      // console.log(isAlreadyInBundle);
 
       if (isAlreadyInBundle) {
         const updatedPayload = bundleData.map((choco) => {
@@ -39,44 +36,13 @@ export const addToBundle = (element) => {
           }
           return choco;
         });
-        const payload = updatedPayload;
-        store.dispatch({ type: "UPDATE", payload: payload });
-        Toastify({
-          text: "Item added successfully",
-          duration: 2000,
-          newWindow: true,
-          close: true,
-          gravity: "top", // `top` or `bottom`
-          position: "right", // `left`, `center` or `right`
-          stopOnFocus: true, // Prevents dismissing of toast on hover
-          style: {
-            background: "#000",
-            color: "#fff",
-            borderRadius: "8px",
-          },
-        }).showToast();
+        const updatedData = setData(updatedPayload);
+        card(updatedData);
         return;
       }
 
-      console.log(bundleData);
-
-      const payload = [...bundleData, selectedItem];
-      store.dispatch({ type: "UPDATE", payload: payload });
-      Toastify({
-        text: "Item added successfully",
-        duration: 2000,
-        newWindow: true,
-        close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          //   background: "linear-gradient(to right, #00b09b, #96c93d)",
-          background: "#000",
-          color: "#fff",
-          borderRadius: "8px",
-        },
-      }).showToast();
+      const updatedData = setData([...bundleData, selectedItem]);
+      card(updatedData);
     });
   });
 };

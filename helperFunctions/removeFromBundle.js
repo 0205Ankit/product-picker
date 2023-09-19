@@ -1,4 +1,5 @@
-import { store } from "./redux";
+import { fetchData, setData } from "./addToBundle";
+import { card } from "./card";
 
 export const removeFromBundle = (element) => {
   element.forEach((button) => {
@@ -6,7 +7,7 @@ export const removeFromBundle = (element) => {
       const itemJSON = event.target.getAttribute("data-item");
       const selectedItem = JSON.parse(decodeURIComponent(itemJSON));
 
-      const bundleData = store.getState();
+      const bundleData = fetchData();
 
       if (selectedItem.quantity > 1) {
         const reducedPayload = bundleData.map((choco) => {
@@ -16,22 +17,8 @@ export const removeFromBundle = (element) => {
           return choco;
         });
 
-        store.dispatch({ type: "UPDATE", payload: reducedPayload });
-        Toastify({
-          text: "Item removed successfully",
-          duration: 3000,
-          newWindow: true,
-          close: true,
-          gravity: "top", // `top` or `bottom`
-          position: "right", // `left`, `center` or `right`
-          stopOnFocus: true, // Prevents dismissing of toast on hover
-          style: {
-            //   background: "linear-gradient(to right, #00b09b, #96c93d)",
-            background: "#000",
-            color: "#fff",
-            borderRadius: "8px",
-          },
-        }).showToast();
+        const updatedData = setData(reducedPayload);
+        card(updatedData);
         return;
       }
 
@@ -39,22 +26,8 @@ export const removeFromBundle = (element) => {
         (choco) => choco.id !== selectedItem.id
       );
 
-      store.dispatch({ type: "UPDATE", payload: filterPayload });
-      Toastify({
-        text: "Item removed successfully",
-        duration: 3000,
-        newWindow: true,
-        close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          //   background: "linear-gradient(to right, #00b09b, #96c93d)",
-          background: "#000",
-          color: "#fff",
-          borderRadius: "8px",
-        },
-      }).showToast();
+      const updatedData = setData(filterPayload);
+      card(updatedData);
     });
   });
 };
